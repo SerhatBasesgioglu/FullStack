@@ -1,7 +1,9 @@
+import Canvas from "./Canvas";
+
 function App() {
   return (
     <>
-      <p>Hello world</p>
+      <Canvas />
     </>
   );
 }
