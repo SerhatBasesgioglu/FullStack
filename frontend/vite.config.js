@@ -7,4 +7,11 @@ export default defineConfig({
   define: {
     global: {},
   },
+  resolve: {
+    alias: {
+      src: "/src",
+      "@/components": "/src/components",
+      "@/util": "/src/util",
+    },
+  },
 });
