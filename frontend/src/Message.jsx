@@ -1,28 +1,23 @@
-import { Client } from "@stomp/stompjs";
-
-import { WebSocket } from "ws";
-Object.assign(global, { WebSocket });
+import wsClient from "@/util/websocket";
 
 const Message = () => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    alert("Helloworld");
-    const client = new Client({
-      brokerURL: "ws://localhost:8080/websocket",
-      onConnect: () => {
-        client.subscribe("/topic/greetings", (message) =>
-          console.log(`Received: ${message.body}`)
-        );
-        client.publish({ destination: "/app/hello", body: "First Message" });
-      },
+  const handleSubscribe = () => {
+    wsClient.subscribe("/topic/greetings", (message) => {
+      console.log(`This is the message: ${message.body}`);
     });
+  };
 
-    client.activate();
+  const handlePublish = () => {
+    wsClient.publish({
+      destination: "/app/hello",
+      body: "Hello fellas",
+    });
   };
   return (
     <>
       <div>
-        <button onClick={handleClick}>Submit message</button>
+        <button onClick={handleSubscribe}>Subscribe</button>
+        <button onClick={handlePublish}>Publish</button>
       </div>
       <p>This is the message field</p>
     </>

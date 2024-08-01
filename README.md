@@ -37,3 +37,8 @@ Before starting to write code I will make a general layout of the systems.
 4- Create the backend. I will use spring boot for all of the backend, i am planning to make the gameserver stuff microservice in the long run so its language may change depending on the performance requirements.
 
 5- Setup the websocket on both frontend and backend.
+
+01/08/2024
+Websocket is working for sending and receiving message. However i chickened out on implementing the movement gui, i will send wasd to server, will get back the player position for now. There will be 2 websocket controllers, one for messages, other for movement.
+
+From my understanding topic endpoints are being subscribed by the clients, any data over there will be sent to all of the subscribers. Currently i have only one user so there is not any need for implementing per user system.
