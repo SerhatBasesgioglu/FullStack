@@ -10,8 +10,9 @@ public class MovementController {
     private final Position position = new Position(250, 250);
 
     @MessageMapping("/movement")
-    @SendTo("/topic/coordinates")
+    @SendTo("/topic/movement")
     public Position processMovement(String input){
+    System.out.println(input);
         int step = 10;
         switch (input) {
             case "w":

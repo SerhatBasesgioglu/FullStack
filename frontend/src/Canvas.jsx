@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import wsClient from "@/util/websocket";
+import { subscribeMovement, publishMovement } from "./util/websocket";
 const Canvas = (props) => {
   const canvasRef = useRef(null);
   const [pos, setPos] = useState({ x: 250, y: 200 });
 
+  subscribeMovement();
   useEffect(() => {
-    wsClient.subscribe("/topic/coordinates", (message) => {
-      const coordinates = JSON.parse(message.body);
-      const x = coordinates.x;
-      const y = coordinates.y;
-      setPos({ x: x, y: y });
-      console.log(`x: ${coordinates.x}, y: ${coordinates.y}`);
-    });
+    // wsClient.subscribe("/topic/coordinates", (message) => {
+    //   const coordinates = JSON.parse(message.body);
+    //   const x = coordinates.x;
+    //   const y = coordinates.y;
+    //   setPos({ x: x, y: y });
+    //   console.log(`x: ${x}, y: ${y}`);
+    // });
+
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     const width = canvas.width;
@@ -25,10 +27,8 @@ const Canvas = (props) => {
       ctx.fill();
     };
     const handleKeyDown = (event) => {
-      wsClient.publish({
-        destination: "/app/movement",
-        body: `${event.key}`,
-      });
+      publishMovement(event.key);
+      console.log(event.key);
     };
     drawPlayer();
     window.addEventListener("keydown", handleKeyDown);
