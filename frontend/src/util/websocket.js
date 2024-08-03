@@ -38,8 +38,9 @@ const publishChat = (message) => {
 const subscribeMovement = (onMovement) => {
   if (isConnected) {
     wsClient.subscribe("/topic/movement", (message) => {
+      const coordinates = JSON.parse(message.body);
       console.log(message.body);
-      onMovement(message.body);
+      onMovement({ x: coordinates.x, y: coordinates.y });
     });
   } else {
     console.log("Websocket is not connected yet");
