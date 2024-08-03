@@ -1,5 +1,6 @@
 package com.aydakar.backend.Controller;
 
+import com.aydakar.backend.Service.MovementService;
 import com.aydakar.backend.model.Position;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -8,6 +9,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MovementController {
     private final Position position = new Position(250, 250);
+    private final MovementService movementService;
+
+    public MovementController(MovementService movementService){
+        this.movementService = movementService;
+    }
 
     @MessageMapping("/movement")
     @SendTo("/topic/movement")

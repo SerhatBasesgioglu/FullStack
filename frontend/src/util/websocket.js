@@ -35,10 +35,11 @@ const publishChat = (message) => {
   }
 };
 
-const subscribeMovement = () => {
+const subscribeMovement = (onMovement) => {
   if (isConnected) {
     wsClient.subscribe("/topic/movement", (message) => {
       console.log(message.body);
+      onMovement(message.body);
     });
   } else {
     console.log("Websocket is not connected yet");
@@ -48,7 +49,7 @@ const subscribeMovement = () => {
 const publishMovement = (message) => {
   if (isConnected) {
     wsClient.publish({
-      destination: "/app/movememnt",
+      destination: "/app/movement",
       body: message,
     });
   } else {

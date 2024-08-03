@@ -1,5 +1,5 @@
-import Canvas from "./Canvas";
-import Message from "./Message";
+import Canvas from "./components/Canvas";
+import Message from "./components/Message";
 import TestButton from "@/components/TestButton";
 
 function App() {
