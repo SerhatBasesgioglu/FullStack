@@ -6,7 +6,7 @@ const Canvas = (props) => {
 
   useEffect(() => {
     subscribeMovement((pos) => setPos(pos));
-  });
+  }, []);
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
