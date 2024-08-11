@@ -1,3 +1,10 @@
 spring:
   application:
     name: backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/serhat
+    username: serhat
+    password: serhat
+  jpa:
+    hibernate:
+      ddl-auto: create
