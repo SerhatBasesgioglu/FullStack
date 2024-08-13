@@ -1,4 +1,4 @@
-package com.aydakar.backend.model;
+package com.aydakar.backend.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
