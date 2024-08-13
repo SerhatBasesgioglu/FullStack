@@ -1,7 +1,7 @@
 package com.aydakar.backend.Controller;
 
 import com.aydakar.backend.Service.MovementService;
-import com.aydakar.backend.model.Position;
+import com.aydakar.backend.Dto.Position;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
