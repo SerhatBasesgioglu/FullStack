@@ -17,4 +17,8 @@ public class Message {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @ManyToOne
+    @JoinColumn(name="player_id")
+    private Player player;
 }

@@ -1,5 +1,6 @@
 package com.aydakar.backend.Controller;
 
+import com.aydakar.backend.Entity.Message;
 import com.aydakar.backend.Service.ChatService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -15,7 +16,7 @@ public class ChatController {
     }
     @MessageMapping("/chat")
     @SendTo("/topic/chat")
-    public String handleMessage(String message){
+    public Message handleMessage(Message message){
         return chatService.handleMessage(message);
     }
 }
