@@ -24,11 +24,12 @@ const subscribeChat = () => {
   }
 };
 
-const publishChat = (message) => {
+const publishChat = (message: Message) => {
   if (isConnected) {
+    const data = JSON.stringify(message);
     wsClient.publish({
       destination: "/app/chat",
-      body: message,
+      body: data,
     });
   } else {
     console.log("Websocket is not connected yet");

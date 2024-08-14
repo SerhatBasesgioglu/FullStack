@@ -8,7 +8,11 @@ const Message = () => {
   };
 
   const handlePublish = () => {
-    publishChat(message);
+    const _message: Message = {
+      content: message,
+      playerId: "",
+    };
+    publishChat(_message);
   };
 
   return (
