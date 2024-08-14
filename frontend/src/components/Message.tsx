@@ -1,24 +1,33 @@
-import { subscribeChat, publishChat } from "@/util/websocket";
+import { subscribe, unsubscribe, publish } from "@/util/websocket";
 import { useState } from "react";
 
 const Message = () => {
   const [message, setMessage] = useState("");
   const handleSubscribe = () => {
-    subscribeChat();
+    subscribe("/topic/chat", (message: any) => {
+      const messageBody: Message = JSON.parse(message.body);
+      console.log(messageBody.content);
+    });
+  };
+
+  const handleUnsubscribe = () => {
+    unsubscribe("/topic/chat");
   };
 
   const handlePublish = () => {
     const _message: Message = {
       content: message,
-      playerId: "",
+      playerId: "serhat",
     };
-    publishChat(_message);
+
+    publish("/app/chat", JSON.stringify(_message));
   };
 
   return (
     <>
       <div>
         <button onClick={handleSubscribe}>Subscribe</button>
+        <button onClick={handleUnsubscribe}>Unsubscribe</button>
       </div>
       <div>
         <input
