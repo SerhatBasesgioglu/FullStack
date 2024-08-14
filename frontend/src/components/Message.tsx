@@ -17,7 +17,7 @@ const Message = () => {
   const handlePublish = () => {
     const _message: Message = {
       content: message,
-      playerId: "serhat",
+      playerName: "Serhat",
     };
 
     publish("/app/chat", JSON.stringify(_message));
